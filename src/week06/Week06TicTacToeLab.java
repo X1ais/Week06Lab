@@ -104,7 +104,7 @@ private final static int ROW_SIZE = 3;
 private final static int COL_SIZE = 3;
 
 private static String[][] gameState;
-private static char player = 'X';
+private static String player = "X";
 
 	public static void main(String[] args) {
 		
@@ -146,19 +146,19 @@ private static char player = 'X';
 
 		
 		for (int i = 0; i < ROW_SIZE; i++) {
-			if (gameState[0][i] == gameState[1][i] && gameState[1][i] == gameState[2][i] && gameState[0][i] != " " && gameState[1][i] != " ") {
+			if (gameState[0][i] == player && gameState[1][i] == player && gameState[2][i] == player) {
 				noWinner = false;
 			}
 		}
 		for (int j = 0; j < COL_SIZE; j++) {
-			if (gameState[j][0] == gameState[j][1] && gameState[j][1] == gameState[j][2] && gameState[j][0] != " " && gameState[j][1] != " ") {
+			if (gameState[j][0] == player && gameState[j][1] == player && gameState[j][2] == player) {
 				noWinner = false;
 			}
 		}
-		if (gameState[0][0] == gameState[1][1] && gameState[1][1] == gameState[2][2] && gameState[0][0] != " " && gameState[1][1] != " ") {
+		if (gameState[0][0] == player && gameState[1][1] == player && gameState[2][2] == player) {
 			noWinner = false;
 		}
-		if (gameState[2][0] == gameState[1][1] && gameState[1][1] == gameState[0][2] && gameState[2][0] != " " && gameState[1][1] != " ") {
+		if (gameState[2][0] == player && gameState[1][1] == player && gameState[0][2] == player) {
 			noWinner = false;
 		}
 		if (noWinner && gameBoardFull) {
@@ -173,10 +173,10 @@ private static char player = 'X';
 	}
 
 	private static void nextPlayer() {
-		if (player == 'X') {
-			player = 'O';
-		} else if (player == 'O') {
-			player = 'X';
+		if (player == "X") {
+			player = "O";
+		} else if (player == "O") {
+			player = "X";
 		}
 	}
 
@@ -216,6 +216,8 @@ private static char player = 'X';
 				System.out.println("Invalid selection! Please select a valid column. ");
 				col = scanner.nextInt();
 			}
+			
+			// Checks to see if space is already taken and asks player to select again if it is.
 		} while(isSpaceTaken(row,col));
 		
 		
@@ -226,7 +228,7 @@ private static char player = 'X';
 	
 	
 	private static boolean isSpaceTaken(int row, int col) {
-		if (gameState[row][col].charAt(0) == 'X' || gameState[row][col].charAt(0) == 'O') {
+		if (gameState[row][col] == "X" || gameState[row][col] == "O") {
 			System.out.println("That space is already taken. Please try again.");
 			return true;
 		} else {
